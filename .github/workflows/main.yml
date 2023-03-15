@@ -58,7 +58,7 @@ jobs:
           # connection timeout to remote host
           #connect_timeout: # optional, default is 30s
           # execute pre-commands before scp
-          #first_ssh: # optional
+          first_ssh: ls
           # scp from local to remote
           scp: $GITHUB_WORKSPACE/ => /home/ec2-user/
           # execute post-commands after scp
