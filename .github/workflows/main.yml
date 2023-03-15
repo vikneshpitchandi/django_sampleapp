@@ -33,5 +33,6 @@ jobs:
              #cat $GITHUB_WORKSPACE/ip.txt
              cat $GITHUB_WORKSPACE/sample.txt | cut -d "=" -f2 | sed 's/"//;s/.$//' >$GITHUB_WORKSPACE/ipadd.txt
              ip=$(sed -i 's/^ *//' $GITHUB_WORKSPACE/ipadd.txt | cat ipadd.txt)
+             echo $ip
              
              
