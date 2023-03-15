@@ -13,6 +13,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: run terraform scripts
+        id: terrafrom_var
         run: |
              export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
              export AWS_SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -34,5 +35,8 @@ jobs:
              cat $GITHUB_WORKSPACE/sample.txt | cut -d "=" -f2 | sed 's/"//;s/.$//' > $GITHUB_WORKSPACE/ipadd.txt
              ip=$(sed -i 's/^ *//' $GITHUB_WORKSPACE/ipadd.txt | cat $GITHUB_WORKSPACE/ipadd.txt)
              echo $ip
-             
+             echo "ip_address=$ip" >> $GITHUB_OUTPUT
+         
+      - name: "check"
+        run: echo ${{ steps.terrafrom.outputs.ip_address }}
              
