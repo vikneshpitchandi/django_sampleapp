@@ -32,7 +32,7 @@ jobs:
              #sed -n '$p' $GITHUB_WORKSPACE/output.txt > $GITHUB_WORKSPACE/ip.txt
              #cat $GITHUB_WORKSPACE/ip.txt
              cat $GITHUB_WORKSPACE/sample.txt | cut -d "=" -f2 | sed 's/"//;s/.$//' > $GITHUB_WORKSPACE/ipadd.txt
-             ip=$(sed -i 's/^ *//' $GITHUB_WORKSPACE/ipadd.txt | cat ipadd.txt)
+             ip=$(sed -i 's/^ *//' $GITHUB_WORKSPACE/ipadd.txt | cat $GITHUB_WORKSPACE/ipadd.txt)
              echo $ip
              
              
