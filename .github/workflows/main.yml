@@ -36,6 +36,7 @@ jobs:
              ip=$(sed -i 's/^ *//' $GITHUB_WORKSPACE/ipadd.txt | cat $GITHUB_WORKSPACE/ipadd.txt)
              echo $ip
              echo "ip_address=$ip" >> $GITHUB_OUTPUT
+             chmod 700 $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem
              scp -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem  $GITHUB_WORKSPACE/* ec2-user@$ip:/home/ec2-user/
          
       - name: "check"
