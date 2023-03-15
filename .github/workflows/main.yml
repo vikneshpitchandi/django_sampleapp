@@ -23,6 +23,7 @@ jobs:
              #cd /home/runner/work/django_sampleapp/django_sampleapp/terraform
              ls
              terraform init
-             terraform plan 
-             terraform apply -auto-approve 
+             #terraform plan 
+             #terraform apply -auto-approve
+             terraform destroy -auto-approve
         
