@@ -35,7 +35,8 @@ data "aws_vpc" "default" {
       to_port     = 0
       protocol    = "-1"
       cidr_blocks  = ["0.0.0.0/0"]
-    }    
+    }
+  }
 
 resource "aws_instance" "public_inst" {
    ami           = "ami-0f2eac25772cd4e36"
