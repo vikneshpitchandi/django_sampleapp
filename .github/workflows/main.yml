@@ -13,7 +13,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: run terraform scripts
-        id: terrafrom_var
+        id: terraform_var
         run: |
              export AWS_ACCESS_KEY_ID=${{ secrets.AWS_ACCESS_KEY_ID }}
              export AWS_SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
@@ -38,5 +38,5 @@ jobs:
              echo "ip_address=$ip" >> $GITHUB_OUTPUT
          
       - name: "check"
-        run: echo ${{ steps.terrafrom.outputs.ip_address }}
+        run: echo ${{ steps.terraform_var.outputs.ip_address }}
              
