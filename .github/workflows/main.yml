@@ -3,7 +3,7 @@ run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
 on: 
   workflow_dispatch:
 jobs:
-  Explore-GitHub-Actions:
+  Python-deployment-GitHub-Actions:
     runs-on: ubuntu-latest
     steps:
       - run: echo "🎉 The job was automatically triggered by a ${{ github.event_name }} event."
@@ -20,6 +20,6 @@ jobs:
              cd /home/runner/work/django_sampleapp/django_sampleapp/terraform
              ls
              terraform init
-             #terraform plan 
-             #terraform apply -auto-approve 
+             terraform plan 
+             terraform apply -auto-approve 
         
