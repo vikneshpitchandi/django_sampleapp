@@ -40,34 +40,19 @@ jobs:
       - name: "check"
         run: echo ${{ steps.terraform_var.outputs.ip_address }}
         
-      - name: ssh-scp-ssh-pipelines
-        # You may pin to the exact commit or the version.
-        # uses: cross-the-world/ssh-scp-ssh-pipelines@78e864b4890087a58248ff39320406971ca88b89
-        uses: cross-the-world/ssh-scp-ssh-pipelines@v1.1.4
+      - name: executing remote ssh commands using ssh key
+        uses: appleboy/ssh-action@v0.1.8
         with:
-          # ssh remote host
           host: ${{ steps.terraform_var.outputs.ip_address }}
-          # ssh remote port
-          port: 22
-          # ssh remote user
-          user: ec2-user
-          # content of ssh private key. ex raw content of ~/.ssh/id_rsa
+          username: ec2-user
           key: ${{ secrets.PRIVATE_KEY }}
-          # ssh remote password
-          #pass: # optional
-          # connection timeout to remote host
-          #connect_timeout: # optional, default is 30s
-          # execute pre-commands before scp
-          first_ssh: ls
-          # scp from local to remote
-          scp: $GITHUB_WORKSPACE/ => /home/ec2-user/
-          # execute post-commands after scp
-          last_ssh: |
-                    python --version
-                    pwd
-                    ls
-                    cd /home/ec2-user/django_sampleapp
-                    pip install -r requirements.txt
-                    python manage.py runserver 0.0.0.0:80
-                    
-             
+          port: 22
+          script: |
+            python --version
+            pwd
+            ls
+            cd /home/ec2-user/django_sampleapp
+            pip install -r requirements.txt
+            python manage.py runserver 0.0.0.0:80
+      
+      
