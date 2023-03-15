@@ -18,8 +18,8 @@ jobs:
              export AWS_SECRET_KEY=${{ secrets.AWS_SECRET_ACCESS_KEY }}
              #cd "$(Build.SourcesDirectory)"
            
-             echo ${{ GITHUB_WORKSPACE }}
-             cd ${{ GITHUB_WORKSPACE }}/terraform
+             echo $GITHUB_WORKSPACE
+             cd $GITHUB_WORKSPACE/terraform
              #cd /home/runner/work/django_sampleapp/django_sampleapp/terraform
              ls
              terraform init
