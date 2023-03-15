@@ -2,15 +2,15 @@ provider "aws" {
   region     = "ap-southeast-1"
 }
 
-variable "vpc_id" {}
+variable "vpc_id" {default= ""}
 
 data "aws_vpc" "default" {
-  id = var.vpc_id
+  id = "${var.vpc_id}"
 }
 
   resource "aws_security_group" "ec2_sg" {
 
-    vpc_id      = data.aws_vpc.default.id
+    vpc_id      = "${data.aws_vpc.default.id}"
 
     ingress {
       from_port   = 22
