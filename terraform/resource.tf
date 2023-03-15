@@ -51,3 +51,6 @@ resource "aws_instance" "public_inst" {
  yum install pip -y
  EOF
  }
+output "ec2_global_ips" {
+  value = "${aws_instance.public_inst.public_ip}"
+}
