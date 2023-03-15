@@ -26,8 +26,12 @@ jobs:
              #terraform plan 
              #terraform apply -auto-approve > $GITHUB_WORKSPACE/output.txt
              #cat  $GITHUB_WORKSPACE/output.txt
-             terraform destroy -auto-approve > $GITHUB_WORKSPACE/output.txt
-             v=$(grep -n "ec2_global_ips =" $GITHUB_WORKSPACE/output.txt | cut -d ":" -f1)
-             echo $v
-             sed -n '$p' $GITHUB_WORKSPACE/output.txt > $GITHUB_WORKSPACE/ip.txt
-             cat $GITHUB_WORKSPACE/ip.txt
+             #terraform destroy -auto-approve > $GITHUB_WORKSPACE/output.txt
+             #v=$(grep -n "ec2_global_ips =" $GITHUB_WORKSPACE/output.txt | cut -d ":" -f1)
+             #echo $v
+             #sed -n '$p' $GITHUB_WORKSPACE/output.txt > $GITHUB_WORKSPACE/ip.txt
+             #cat $GITHUB_WORKSPACE/ip.txt
+             cat $GITHUB_WORKSPACE/sample.txt | cut -d "=" -f2 | sed 's/"//;s/.$//' >$GITHUB_WORKSPACE/ipadd.txt
+             ip=$(sed -i 's/^ *//' $GITHUB_WORKSPACE/ipadd.txt | cat ipadd.txt)
+             
+             
