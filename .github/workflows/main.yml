@@ -38,7 +38,7 @@ jobs:
              echo $ip
              echo "ip_address=$ip" >> $GITHUB_OUTPUT
              chmod 700 $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem
-             scp -tt -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem  $GITHUB_WORKSPACE/* ec2-user@${ip}:/home/ec2-user/
+             scp -tt -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem  $GITHUB_WORKSPACE/* ec2-user@$ip:/home/ec2-user/
          
       - name: "check"
         run: echo ${{ steps.terraform_var.outputs.ip_address }}
