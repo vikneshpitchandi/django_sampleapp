@@ -24,10 +24,10 @@ jobs:
              #cd /home/runner/work/django_sampleapp/django_sampleapp/terraform
              ls
              terraform init
-             #terraform plan 
-             #terraform apply -auto-approve > $GITHUB_WORKSPACE/output.txt
+             terraform plan 
+             terraform apply -auto-approve > $GITHUB_WORKSPACE/output.txt
              #cat  $GITHUB_WORKSPACE/output.txt
-             terraform destroy -auto-approve > $GITHUB_WORKSPACE/output.txt
+             #terraform destroy -auto-approve > $GITHUB_WORKSPACE/output.txt
              cat $GITHUB_WORKSPACE/output.txt
              #v=$(grep -n "ec2_global_ips =" $GITHUB_WORKSPACE/output.txt | cut -d ":" -f1)
              #echo $v
