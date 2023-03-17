@@ -46,11 +46,20 @@ jobs:
              dest=$host':/home/ec2-user/'
              dest1="$(echo -e $dest  | tr -d '[:space:]')"
              echo $dest1
-             scp  -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -rf $GITHUB_WORKSPACE/* $dest1
+             #scp  -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -rf $GITHUB_WORKSPACE/* $dest1
          
       - name: "check"
         run: echo ${{ steps.terraform_var.outputs.ip_address }}
-      
+        
+      - name: copy file via ssh password
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ steps.terraform_var.outputs.ip_address }}
+          username: ec2-user
+          key: ${{ secrets.PRIVATE_KEY }}
+          port: 22
+          source: "${GITHUB_WORKSPACE}/*"
+          target: "/home/ec2-user/"
       
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.8
