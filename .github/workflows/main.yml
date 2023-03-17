@@ -52,14 +52,14 @@ jobs:
         run: echo ${{ steps.terraform_var.outputs.ip_address }}
         
       - name: copy file via ssh password
-        uses: appleboy/scp-action@master
+        uses: garygrossgarten/github-action-scp@release
         with:
           host: ${{ steps.terraform_var.outputs.ip_address }}
           username: ec2-user
-          key: ${{ secrets.PRIVATE_KEY }}
+          privateKey: ${{ secrets.PRIVATE_KEY }}
           port: 22
-          source: "${GITHUB_WORKSPACE}/"
-          target: "/home/ec2-user/"
+          local: "${GITHUB_WORKSPACE}/"
+          remote: "/home/ec2-user/"
       
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.8
