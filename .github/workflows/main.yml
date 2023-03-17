@@ -70,7 +70,8 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
-            sudo yum install python311 python311-pip -y            
+            sudo yum install python310 -y
+            sudo pip install --upgrade pip==22.3.1 -y
             python3 --version
             pip --version
             pwd
