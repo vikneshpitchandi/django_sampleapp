@@ -58,7 +58,7 @@ jobs:
           username: ec2-user
           privateKey: ${{ secrets.PRIVATE_KEY }}
           port: 22
-          local: ${{ github.workspace }}
+          local: ${{ github.workspace }},!${{ github.workspace }}/.git
           remote: /home/ec2-user/
       
       - name: executing remote ssh commands using ssh key
@@ -69,12 +69,12 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
-            python --version
+            python3 --version
             pwd
             ls
             cd /home/ec2-user/
             ls
-            pip install -r requirements.txt
-            python manage.py runserver 0.0.0.0:80
+            pip3 install -r requirements.txt
+            python3 manage.py runserver 0.0.0.0:80
       
       
