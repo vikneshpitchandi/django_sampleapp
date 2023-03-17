@@ -40,7 +40,7 @@ jobs:
              chmod 700 $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem
              user='ec2-user@'$ip
              echo $user
-             host="$(echo -e "$user  | tr -d '[:space:]')"
+             host="$(echo -e $user  | tr -d '[:space:]')"
              echo $host
              ssh -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -tt  $host "python --version"
              scp  -r -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem  $GITHUB_WORKSPACE/* $host:/home/ec2-user/
