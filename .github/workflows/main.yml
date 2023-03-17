@@ -70,12 +70,12 @@ jobs:
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
           script: |
-            sudo wget https://www.python.org/ftp/python/3.11.1/Python-3.11.1.tgz 
-            sudo tar xzf Python-3.11.1.tgz 
-            cd Python-3.11.1 
-            sudo ./configure --enable-optimizations 
-            sudo make altinstall 
-            sudo pip install --upgrade pip==22.3.1 -y
+            #sudo wget https://www.python.org/ftp/python/3.11.1/Python-3.11.1.tgz 
+            #sudo tar xzf Python-3.11.1.tgz 
+            #cd Python-3.11.1 
+            #sudo ./configure --enable-optimizations 
+            #sudo make altinstall 
+            #sudo pip install --upgrade pip==22.3.1 -y
             python3 --version
             pip --version
             pwd
