@@ -42,8 +42,8 @@ jobs:
              echo $user
              host="$(echo -e $user  | tr -d '[:space:]')"
              echo $host
-             ssh -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -tt  $host "cd sample"
-             dest=$host':/home/ec2-user/sample/'
+             ssh -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -tt  $host "echo 'hi' "
+             dest=$host':/home/ec2-user/'
              dest1="$(echo -e $dest  | tr -d '[:space:]')"
              echo $dest1
              scp  -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -rf $GITHUB_WORKSPACE/* $dest1
