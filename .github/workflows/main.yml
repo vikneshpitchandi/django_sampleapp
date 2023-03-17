@@ -82,7 +82,7 @@ jobs:
             ls
             cd /home/ec2-user/
             ls
-            pip3 install -r requirements.txt
-            python3 manage.py runserver 0.0.0.0:80 --noreload
+            sudo pip3 install -r requirements.txt
+            sudo python3 manage.py runserver 0.0.0.0:80 --noreload
       
       
