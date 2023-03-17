@@ -58,8 +58,8 @@ jobs:
           username: ec2-user
           privateKey: ${{ secrets.PRIVATE_KEY }}
           port: 22
-          local: "${GITHUB_WORKSPACE}/"
-          remote: "/home/ec2-user/"
+          local: $GITHUB_WORKSPACE/*
+          remote: /home/ec2-user/
       
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.8
