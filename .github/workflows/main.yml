@@ -38,7 +38,7 @@ jobs:
              echo $ip
              echo "ip_address=$ip" >> $GITHUB_OUTPUT
              chmod 700 $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem
-             user="ec2-user@"$ip
+             user="ec2-user@"+$ip
              echo $user
              ssh -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -tt  $user "echo 'welcome'"
              scp -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem  $GITHUB_WORKSPACE/* $user:/home/ec2-user/
