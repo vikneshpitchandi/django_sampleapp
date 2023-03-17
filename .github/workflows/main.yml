@@ -42,8 +42,11 @@ jobs:
              echo $user
              host="$(echo -e $user  | tr -d '[:space:]')"
              echo $host
-             ssh -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -tt  $host "python --version"
-             scp  -r -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem  $GITHUB_WORKSPACE/* $host:/home/ec2-user/
+             ssh -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -tt  $host "mkdir sample"
+             dest=$host':/home/ec2-user/sample/'
+             dest1="$(echo -e $dest  | tr -d '[:space:]')"
+             echo $dest1
+             scp  -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -rf $GITHUB_WORKSPACE/* $dest1
          
       - name: "check"
         run: echo ${{ steps.terraform_var.outputs.ip_address }}
