@@ -46,7 +46,7 @@ jobs:
              dest=$host':/home/ec2-user/sample/'
              dest1="$(echo -e $dest  | tr -d '[:space:]')"
              echo $dest1
-             scp  -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -r $GITHUB_WORKSPACE/* $dest1
+             scp  -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -rp $GITHUB_WORKSPACE/* $dest1
          
       - name: "check"
         run: echo ${{ steps.terraform_var.outputs.ip_address }}
