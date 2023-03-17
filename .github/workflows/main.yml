@@ -46,28 +46,11 @@ jobs:
              dest=$host':/home/ec2-user/'
              dest1="$(echo -e $dest  | tr -d '[:space:]')"
              echo $dest1
-             #scp  -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -rf $GITHUB_WORKSPACE/* $dest1
+             scp  -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -rf $GITHUB_WORKSPACE/* $dest1
          
       - name: "check"
         run: echo ${{ steps.terraform_var.outputs.ip_address }}
       
-      - name: scp-pipeline
-      # You may pin to the exact commit or the version.
-      # uses: cross-the-world/scp-pipeline@b4d86397129250eb940fabdc3f7a435436d2503a
-        uses: cross-the-world/scp-pipeline@v1.2.1
-        with:
-          # ssh remote host
-          host: ${{ steps.terraform_var.outputs.ip_address }}
-         # ssh remote user
-          user: ec2-user
-          # content of ssh private key. ex raw content of ~/.ssh/id_rsa
-          key:  ${{ secrets.PRIVATE_KEY }}
-          # source to copy
-          local:  $GITHUB_WORKSPACE/*
-          # destination for copy
-          remote: /home/ec2-user/
-          # scp from local to remote
-         # scp: # optional
       
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.8
