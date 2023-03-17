@@ -47,8 +47,8 @@ resource "aws_instance" "public_inst" {
    user_data = <<EOF
  #!/bin/bash
  sudo su
- yum install python3 -y
- yum install pip -y
+ yum install python311 -y
+ yum install python-pip -y
  EOF
  }
 output "ec2_global_ips" {
