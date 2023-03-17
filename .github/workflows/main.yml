@@ -38,14 +38,34 @@ jobs:
              echo $ip
              echo "ip_address=$ip" >> $GITHUB_OUTPUT
              chmod 700 $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem
-             #user='ec2-user@'$ip
-             #echo $user
-             #ssh -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -tt  $user "echo 'welcome'"
-             #scp -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem  $GITHUB_WORKSPACE/* $user:/home/ec2-user/
+             user='ec2-user@'$ip
+             echo $user
+             host="$(echo -e "$user  | tr -d '[:space:]')"
+             echo $host
+             ssh -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -tt  $host "python --version"
+             scp  -r -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem  $GITHUB_WORKSPACE/* $host:/home/ec2-user/
          
       - name: "check"
         run: echo ${{ steps.terraform_var.outputs.ip_address }}
-        
+      
+      - name: scp-pipeline
+      # You may pin to the exact commit or the version.
+      # uses: cross-the-world/scp-pipeline@b4d86397129250eb940fabdc3f7a435436d2503a
+        uses: cross-the-world/scp-pipeline@v1.2.1
+        with:
+          # ssh remote host
+          host: ${{ steps.terraform_var.outputs.ip_address }}
+         # ssh remote user
+          user: ec2-user
+          # content of ssh private key. ex raw content of ~/.ssh/id_rsa
+          key:  ${{ secrets.PRIVATE_KEY }}
+          # source to copy
+          local:  $GITHUB_WORKSPACE/*
+          # destination for copy
+          remote: /home/ec2-user/
+          # scp from local to remote
+         # scp: # optional
+      
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@v0.1.8
         with:
