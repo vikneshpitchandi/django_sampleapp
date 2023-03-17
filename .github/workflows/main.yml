@@ -58,7 +58,7 @@ jobs:
           username: ec2-user
           key: ${{ secrets.PRIVATE_KEY }}
           port: 22
-          source: "${GITHUB_WORKSPACE}/*"
+          source: "${GITHUB_WORKSPACE}/"
           target: "/home/ec2-user/"
       
       - name: executing remote ssh commands using ssh key
