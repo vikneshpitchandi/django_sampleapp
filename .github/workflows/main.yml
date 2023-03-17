@@ -24,10 +24,10 @@ jobs:
              #cd /home/runner/work/django_sampleapp/django_sampleapp/terraform
              ls
              terraform init
-             #terraform plan 
-             #terraform apply -auto-approve > $GITHUB_WORKSPACE/output.txt
+             terraform plan 
+             terraform apply -auto-approve > $GITHUB_WORKSPACE/output.txt
              #cat  $GITHUB_WORKSPACE/output.txt
-             terraform destroy -auto-approve > $GITHUB_WORKSPACE/output.txt
+             #terraform destroy -auto-approve > $GITHUB_WORKSPACE/output.txt
              cat $GITHUB_WORKSPACE/output.txt
              #v=$(grep -n "ec2_global_ips =" $GITHUB_WORKSPACE/output.txt | cut -d ":" -f1)
              #echo $v
@@ -38,6 +38,7 @@ jobs:
              echo $ip
              echo "ip_address=$ip" >> $GITHUB_OUTPUT
              chmod 700 $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem
+             ssh -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem -tt  ec2-user@${ip} "echo 'welcome'"
              scp -o StrictHostKeyChecking=no -i $GITHUB_WORKSPACE/terraform/terraform_pvt_instance.pem  $GITHUB_WORKSPACE/* ec2-user@${ip}:/home/ec2-user/
          
       - name: "check"
