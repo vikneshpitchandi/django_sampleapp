@@ -83,7 +83,7 @@ jobs:
             cd /home/ec2-user/
             ls
             sudo pip3 install -r requirements.txt
-            screen -S djangoserver ^ 
+            screen -S djangoserver  
             #sudo nohup python3 manage.py runserver 0.0.0.0:80 --noreload & exit 0
             sudo nohup python3 manage.py runserver 0.0.0.0:80 --noreload &
             exit
