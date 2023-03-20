@@ -86,6 +86,6 @@ jobs:
             screen -S djangoserver ^ 
             #sudo nohup python3 manage.py runserver 0.0.0.0:80 --noreload & exit 0
             sudo nohup python3 manage.py runserver 0.0.0.0:80 --noreload &
-            ^a d
+            exit
       
       
