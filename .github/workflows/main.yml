@@ -83,6 +83,6 @@ jobs:
             cd /home/ec2-user/
             ls
             sudo pip3 install -r requirements.txt
-            sudo nohup bash -c 'python3 manage.py runserver 0.0.0.0:80 --noreload 1>/home/ec2-user/log.txt 2>/home/ec2-user/error_log.txt &'
+            sudo nohup bash -c 'python3 manae.py runserver 0.0.0.0:80 --noreload 1>/home/ec2-user/log.txt 2>/home/ec2-user/error_log.txt &'
       
       
